@@ -1,0 +1,99 @@
+﻿<#@ template language="C#" #>
+<#@ output extension=".cs" #>
+
+<#
+    var conversions = new (string Label, string Type)[]
+    {
+        ("Boolean", "bool"),
+        ("Int8", "sbyte"),
+        ("UInt8", "byte"),
+        ("Int16", "short"),
+        ("UInt16", "ushort"),
+        ("Int32", "int"),
+        ("UInt32", "uint"),
+        ("Int64", "long"),
+        ("UInt64", "ulong"),
+        ("Float", "float"),
+        ("Double", "double"),
+        ("Decimal", "decimal"),
+        ("DateTime", "DateTime"),
+        ("Guid", "Guid"),
+    };
+#>
+
+using System.Xml;
+using OneBarker.NamecheapDns.Exceptions;
+
+namespace OneBarker.NamecheapDns.Utility;
+
+/// <summary>
+/// Extension methods for XmlElements.
+/// </summary>
+internal static partial class XmlElementExtensions
+{   
+<#
+    foreach (var (label, type) in conversions)
+    {
+#>
+    /// <summary>
+    /// Returns the value of the attribute with the specified name.
+    /// </summary>
+    /// <param name="element"></param>
+    /// <param name="name"></param>
+    /// <param name="defaultValue"></param>
+    /// <returns></returns>
+    public static <#= type #> GetAttributeAs<#= label #>(this XmlElement element, string name, <#= type #> defaultValue = default)
+        => <#= type #>.TryParse(element.GetAttribute(name), out var result) ? result : defaultValue;
+
+    /// <summary>
+    /// Gets the content of the element.
+    /// </summary>
+    /// <param name="element"></param>
+    /// <param name="defaultValue"></param>
+    /// <returns></returns>
+    public static <#= type #> GetContentAs<#= label #>(this XmlElement element, <#= type #> defaultValue = default)
+        => <#= type #>.TryParse(element.GetContent(), out var result) ? result : defaultValue;
+    
+    /// <summary>
+    /// Gets the content of the named child element.
+    /// </summary>
+    /// <param name="element"></param>
+    /// <param name="name"></param>
+    /// <param name="defaultValue"></param>
+    /// <returns></returns>
+    public static <#= type #> GetChildContentAs<#= label #>(this XmlElement element, string name, <#= type #> defaultValue = default)
+        => <#= type #>.TryParse(element.GetChildContent(name), out var result) ? result : defaultValue;
+
+    /// <summary>
+    /// Returns the value of the attribute with the specified name.
+    /// </summary>
+    /// <param name="element"></param>
+    /// <param name="name"></param>
+    /// <returns></returns>
+    /// <exception cref="MissingAttributeException"></exception>
+    public static <#= type #> GetRequiredAttributeAs<#= label #>(this XmlElement element, string name)
+        => <#= type #>.Parse(element.GetRequiredAttribute(name));
+
+    /// <summary>
+    /// Gets the content of the element.
+    /// </summary>
+    /// <param name="element"></param>
+    /// <returns></returns>
+    public static <#= type #> GetRequiredContentAs<#= label #>(this XmlElement element)
+        => <#= type #>.Parse(element.GetContent());
+    
+    /// <summary>
+    /// Gets the content of the named child element.
+    /// </summary>
+    /// <param name="element"></param>
+    /// <param name="name"></param>
+    /// <returns></returns>
+    /// <exception cref="MissingElementException"></exception>
+    public static <#= type #> GetRequiredChildContentAs<#= label #>(this XmlElement element, string name)
+        => <#= type #>.Parse(element.GetRequiredChildContent(name));
+
+<#
+    }
+#>
+}
+

@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneBarker.NamecheapDns", "OneBarker.NamecheapDns\OneBarker.NamecheapDns.csproj", "{39878EF0-E585-49D9-B567-6A5B75D08036}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneBarker.NamecheapDns.Tests", "OneBarker.NamecheapDns.Tests\OneBarker.NamecheapDns.Tests.csproj", "{23ECF4DB-9066-4547-B38B-CD8197AC2F28}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{39878EF0-E585-49D9-B567-6A5B75D08036}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39878EF0-E585-49D9-B567-6A5B75D08036}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39878EF0-E585-49D9-B567-6A5B75D08036}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39878EF0-E585-49D9-B567-6A5B75D08036}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23ECF4DB-9066-4547-B38B-CD8197AC2F28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23ECF4DB-9066-4547-B38B-CD8197AC2F28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23ECF4DB-9066-4547-B38B-CD8197AC2F28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23ECF4DB-9066-4547-B38B-CD8197AC2F28}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
